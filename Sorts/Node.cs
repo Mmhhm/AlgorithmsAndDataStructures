@@ -2,36 +2,38 @@
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sorts
 {
     public class Node
     {
-        public int data;
-        public Node next;
+        public int Value;
+        public Node Next;
         public Node(int d)
         {
-            data = d;
-            next = null;
+            Value = d;
+            Next = null;
         }
-        public Node GetValue()
+        public int GetValue()
         {
-            return data;
+            return Value;
         }
         public void SetValue(int data)
         {
-            this.data = data;
+            this.Value = data;
         }
-        public Node GetValue()
+        public Node GetNext()
         {
-            return next;
+            return Next;
         }
-        public void SetValue(Node next)
+        public void SetNext(Node next)
         {
-            this.next = next;
+            this.Next = next;
         }
     }
     public class LinkedList
@@ -47,23 +49,23 @@ namespace Sorts
         {
             Node newNode = new Node(data);
                 Node lastNode = Head;
-                while(lastNode.next != null)
+                while(lastNode.Next != null)
                 {
-                    lastNode = lastNode.next;
+                    lastNode = lastNode.Next;
                 }
-                lastNode.next = newNode;
+                lastNode.Next = newNode;
         }
 
         public string Display()
         {
             string str = "";
             Node node = Head;
-            while (node.next != null)
+            while (node.Next != null)
             {
-                str += node.data.ToString();
-                node = node.next;
+                str += node.Value.ToString();
+                node = node.Next;
             }
-            str += node.data.ToString();
+            str += node.Value.ToString();
             return str;
         }
 
@@ -71,10 +73,10 @@ namespace Sorts
         {
             int counter = 0;
             Node node = Head;
-            while (node.next != null)
+            while (node.Next != null)
             {
                 counter++;
-                node = node.next;
+                node = node.Next;
             }
             counter++;
             return counter;
@@ -84,14 +86,14 @@ namespace Sorts
         {
             Node node = Head;
             Node prev = Head;
-            while (node.next != null)
+            while (node.Next != null)
             {
-                if(node.data == data)
+                if(node.Value == data)
                 {
-                    prev.next = node;
+                    prev.Next = node;
                     break;
                 }
-                node = node.next;
+                node = node.Next;
                 prev = node;
             }
         }
@@ -100,20 +102,47 @@ namespace Sorts
         {
             Node node = Head;
             Node prev = Head;
-            while (node.next != null)
+            while (node.Next != null)
             {
-                if (node.data == data)
+                if (node.Value == data)
                 {
-                    prev.next = node;
+                    prev.Next = node;
                 }
-                node = node.next;
+                node = node.Next;
                 prev = node;
             }
         }
 
-        public void RemoveIndex(int data)
+        public int Find(int data)
         {
+            int index = 0;
+            Node node = Head;
+            while (node.Next != null)
+            {
+                if (node.Value == data)
+                {
+                    return index;
+                }
+                node = node.Next;
+                index++;
+            }
+            return -1;
+        }
 
+        public int Get(int index)
+        {
+            int myIndex = 0;
+            Node node = Head;
+            while (node.Next != null)
+            {
+                if (myIndex == index)
+                {
+                    return node.Value;
+                }
+                node = node.Next;
+                index++;
+            }
+            return -1;
         }
     }
 }

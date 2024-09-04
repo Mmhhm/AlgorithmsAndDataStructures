@@ -64,16 +64,14 @@ namespace Sorts
         }
 
 
-
-
         public void RemoveIndex(int data)
         {
-            if(Head == null) {  return; }
+            if (Head == null) { return; }
 
             Node node = Head;
             Node prev = Head;
             int index = 0;
-            
+
             while (node != null)
             {
                 if (index == data)
@@ -81,7 +79,7 @@ namespace Sorts
                     prev.Next = node.Next;
                     return;
                 }
-                
+
                 prev = node;
                 node = node.Next;
                 index++;
@@ -141,7 +139,7 @@ namespace Sorts
             {
                 if (node.Value == data)
                 {
-                    if(prev != null)
+                    if (prev != null)
                     {
                         prev.Next = node.Next;
                     }
@@ -186,17 +184,21 @@ namespace Sorts
 
         public string Display()
         {
-            /*            if (Head == null) { return ""; }
-                        Node node = Head;
-                        string str = string.Empty;
-                        while (node != null)
-                        {
-                            str += node.Value.ToString() + " -> ";
-                            node = node.Next;
-                        }
-                        node = node.Next;
-                        str += node.Value.ToString();*/
-            return""; //str;
+            if (Head == null) { return ""; }
+            Node node = Head;
+            string str = string.Empty;
+            while (node != null)
+            {
+                if (node.Next == null)
+                {
+                    str += node.Value.ToString();
+                    return str;
+                }
+                str += node.Value.ToString() + " -> ";
+                node = node.Next;
+            }
+            return str;
+            /*return "";*/
         }
 
 

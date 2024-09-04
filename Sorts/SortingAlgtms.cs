@@ -8,26 +8,60 @@ namespace Sorts
 {
     public class SortingAlgtms
     {
-        // TODO selection sort
+        // TODO finish the selection sort
         // TODO insertion sort
-        // TODO merge sort
-        // TODO finish bubble sort
-        static int[] BubbleSort(int[] arr, int num)
+        // TODO finish merge sort
+        public static int[] SelectionSort(int[] arr)
         {
-            int temp = arr[0];
-            for (int i = 0; i < arr.Length; i++)
+            int i, j, temp, indexMax = 0;
+            for(i =0; i < arr.Length; i++)
             {
-                for (int j = 0; j < arr.Length - i - 1; j++)
+                for(j = 0; j < arr.Length - i -1; j++)
+                {
+                    if (arr[j] > arr[indexMax])
+                    {
+                        indexMax = j;
+                    }
+                }
+                temp = arr[j];
+                arr[j] = arr[indexMax];
+                arr[indexMax] = temp;
+            }
+            return arr;
+        }
+
+
+        public static int[] BubbleSort(int[] arr)
+        {
+            int i, j, temp = arr[0];
+            bool swapped;
+            
+            for (i = 0; i < arr.Length; i++)
+            {
+                swapped = false;
+                for (j = 0; j < arr.Length - i - 1; j++)
                 {
                     if (arr[j] > arr[j + 1])
                     {
                         temp = arr[j];
                         arr[j] = arr[j + 1];
                         arr[j + 1] = temp;
-
+                        swapped = true;
                     }
                 }
-                // Unfinished
+                if (swapped == false) break;
             }
+            return arr;
         }
+
+/*        public static int[] MergeSort(int[] arr, int left, int right)
+        {
+            if (right < left) { return arr; }
+
+            int mid = left + (right - left) / 2;
+
+            MergeSort(arr, mid, right);
+            MergeSort(arr, left, mid);
+        }*/
+    }
 }

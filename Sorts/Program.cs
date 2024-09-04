@@ -14,6 +14,9 @@ public class Program
         tree.Insert(7);
         tree.Insert(12);
         tree.Insert(17);
+        Console.WriteLine(tree.Find(19));
+        Console.WriteLine(tree.FindMax());
+        Console.WriteLine(tree.FindMin());
 
         // Print the tree structure to verify insertion
         Console.WriteLine("Tree structure:");

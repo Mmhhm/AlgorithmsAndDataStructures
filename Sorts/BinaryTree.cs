@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Sorts
 {
@@ -14,38 +15,89 @@ namespace Sorts
             root = null;
         }
 
-        // TODO Make sure the this method works.
-        // TODO Implement Find, FindMin, FindMax.
-        
-        public  void Insert(int value)
+        // Insert new value
+        public void Insert(int value)
         {
             TreeNode newNode = new TreeNode(value);
             if (root == null) { root = newNode; return; }
-            
-            InsertRec(root, newNode);
+
+            InsRecursion(root, newNode);
         }
 
-        private void InsertRec(TreeNode currNode, TreeNode newNode)
+        private void InsRecursion(TreeNode currNode, TreeNode newNode)
         {
             if (currNode.Value >= newNode.Value)
             {
-                if(currNode.Left == null) 
+                if (currNode.Left == null)
                 {
-                    currNode.Left = newNode; 
-                    return; 
+                    currNode.Left = newNode;
+                    return;
                 }
-                InsertRec(currNode.Left, newNode);
+                InsRecursion(currNode.Left, newNode);
             }
-            else if(currNode.Value < newNode.Value)
+            else if (currNode.Value < newNode.Value)
             {
-                if (currNode.Right == null) 
+                if (currNode.Right == null)
                 {
-                    currNode.Right = newNode; 
-                    return; 
+                    currNode.Right = newNode;
+                    return;
                 }
-                InsertRec(currNode.Right, newNode);
+                InsRecursion(currNode.Right, newNode);
             }
         }
+
+        // Search value
+        public bool Find(int value)
+        {
+            return RecFind(root, value);
+        }
+
+        public bool RecFind(TreeNode node, int value)
+        {
+            if (node == null) { return false; }
+
+            if (node.Value > value)
+            {
+                return RecFind(node.Left, value);
+            }
+            else if (node.Value < value)
+            {
+                return RecFind(node.Right, value);
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        // Find max value
+        public int FindMax()
+        {
+            if (root == null) { return -1; }
+            return RecFindMax(root);
+        }
+
+        private int RecFindMax(TreeNode node)
+        {
+            if (node.Right == null) { return node.Value; }
+            return RecFindMax(node.Right);
+        }
+
+        // Find min value
+        public int FindMin()
+        {
+            if (root == null) { return -1; }
+            return FindMin(root);
+        }
+
+        private int FindMin(TreeNode node)
+        {
+            if (node.Left == null) { return node.Value; }
+            return FindMin(node.Left);
+        }
+        
+
+        // Prints the tree structure
         public void PrintTree()
         {
             PrintTreeRec(root, "", true);

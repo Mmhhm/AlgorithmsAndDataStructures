@@ -10,7 +10,8 @@ namespace Sorts
 {
     public class Stack
     {
-        public Node Head {  get; set; } 
+        public Node Head {  get; set; }
+        public int Counter;
         public Stack() { this.Head = null; }
 
         public bool IsEmpty()
@@ -24,6 +25,7 @@ namespace Sorts
 
             newNode.Next = Head;
             Head = newNode;
+            Counter++;
         }
 
         public int Pop()
@@ -33,6 +35,7 @@ namespace Sorts
             {
                 int value = Head.Value;
                 Head = Head.Next;
+                Counter--;
                 return value;
             }
         }
@@ -44,6 +47,9 @@ namespace Sorts
             return Head.Value;
         }
 
-
+        public int Count()
+        {
+            return Counter;
+        }
     }
 }

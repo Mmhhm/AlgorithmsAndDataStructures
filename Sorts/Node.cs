@@ -36,6 +36,8 @@ namespace Sorts
             this.Next = next;
         }
     }
+
+    // Creating an empty linked list
     public class LinkedList
     {
         public Node Head;
@@ -45,9 +47,6 @@ namespace Sorts
             Head = head;
         }
 
-
-        // TODO the problem in Test 2, 3, 5, is that 'Display' in the test does not return the respected result. Check what is this 'Display' thing.
-        // TODO test 12 has the same problem but a bit diffrent - check.
         public void Add(int data)
         {
             Node newNode = new Node(data);
@@ -198,7 +197,6 @@ namespace Sorts
                 node = node.Next;
             }
             return str;
-            /*return "";*/
         }
 
 

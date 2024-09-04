@@ -10,7 +10,7 @@ namespace Sorts
     {
         Node Front;
         Node Rear;
-        int Count;
+        int Counter;
         
         public Queue()  // Constructor 
         {
@@ -31,12 +31,13 @@ namespace Sorts
             {
                 Front = newNode;  // If the queue is empty, the new node is both the front and rear
                 Rear = newNode;
+                Counter++;
                 return;
             }
             
             Rear.Next = newNode;
             Rear = newNode;
-            Count++;
+            Counter++;
         }
 
         public int Dequeue()
@@ -45,7 +46,7 @@ namespace Sorts
 
             int value = Front.Value;
             Front = Front.Next;
-            Count--;
+            Counter--;
             return value;
         }
 
@@ -53,6 +54,11 @@ namespace Sorts
         {
             if (IsEmpty()) { return -1; };
             return Front.Value;
+        }
+
+        public int Count()
+        {
+            return Counter;
         }
     }
 }

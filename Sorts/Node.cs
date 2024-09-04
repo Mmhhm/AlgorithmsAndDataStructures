@@ -47,6 +47,8 @@ namespace Sorts
             Head = head;
         }
 
+
+        // Adding elements to the end of the list
         public void Add(int data)
         {
             Node newNode = new Node(data);
@@ -96,6 +98,8 @@ namespace Sorts
             return counter;
         }
 
+
+        // Removing a value from the list
         public void RemoveValue(int data)
         {
             if (Head == null) { return; }
